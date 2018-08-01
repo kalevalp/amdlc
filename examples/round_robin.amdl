@@ -1,0 +1,26 @@
+round_robin =
+do
+  port_0 ? src,dst,tpe => // external port
+    if
+      (src in init and src in left) => port_1 ! src,dst,tpe
+      []
+      (src in init and not src in left) => port_2 ! src,dst,tpe
+      []
+      (not src in init and 0 in next) =>
+        port_1 ! src,dst,tpe;
+	left(src) := true;
+	init(src) := true;
+	next(0) := false
+      []
+      (not src in init and not 0 in next) =>
+        port_2 ! src,dst,tpe;
+	init(src) := true;
+	next(0) := true
+    fi
+  []
+  port_1 ? src,dst,tpe => // internal left port
+    true => port_0 ! src,dst,tpe
+  []
+  port_2 ? src,dst,tpe => // internal right port
+    true => port_0 ! src,dst,tpe
+od

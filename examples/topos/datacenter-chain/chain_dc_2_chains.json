@@ -1,0 +1,59 @@
+{
+    "typeCount" : 5,
+
+    "middleboxInstances" : [
+        {"id" : 0, "kind" : "acl_lb_src"},
+        {"id" : 1, "kind" : "dropping_ips"},
+        {"id" : 2, "kind" : "hole_punching_firewall"},
+        {"id" : 3, "kind" : "load_balancer"},
+        {"id" : 4, "kind" : "dropping_ips"},
+        {"id" : 5, "kind" : "hole_punching_firewall"},
+        {"id" : 6, "kind" : "load_balancer"},
+        {"id" : 7, "kind" : "acl_lb_dst"},
+        {"id" : 8, "kind" : "acl_lb_dst"}
+    ],
+
+    "middleboxLinks" : [
+        {"mbox1Id" : 0 , "port1Id" : 1 , "mbox2Id" : 1 , "port2Id" : 0},
+        {"mbox1Id" : 0 , "port1Id" : 2 , "mbox2Id" : 4 , "port2Id" : 0},
+        
+        {"mbox1Id" : 1 , "port1Id" : 1 , "mbox2Id" : 2 , "port2Id" : 1},
+        {"mbox1Id" : 2 , "port1Id" : 0 , "mbox2Id" : 3 , "port2Id" : 0},
+        {"mbox1Id" : 3 , "port1Id" : 1 , "mbox2Id" : 7 , "port2Id" : 1},
+        {"mbox1Id" : 3 , "port1Id" : 2 , "mbox2Id" : 8 , "port2Id" : 1},
+
+        {"mbox1Id" : 4 , "port1Id" : 1 , "mbox2Id" : 5 , "port2Id" : 1},
+        {"mbox1Id" : 5 , "port1Id" : 0 , "mbox2Id" : 6 , "port2Id" : 0},
+        {"mbox1Id" : 6 , "port1Id" : 1 , "mbox2Id" : 7 , "port2Id" : 2},
+        {"mbox1Id" : 6 , "port1Id" : 2 , "mbox2Id" : 8 , "port2Id" : 2}
+    ],
+
+    "connectedHosts" : [
+        {"mboxId" : 0 , "portId" : 0 , "fromHost" : 0 , "toHost" : 999},
+        {"mboxId" : 7 , "portId" : 0 , "fromHost" : 1000 , "toHost" : 1000},
+        {"mboxId" : 8 , "portId" : 0 , "fromHost" : 1001 , "toHost" : 1001}        
+    ],
+
+    "initialState" : [
+        {"mboxId" : 0 , "mboxKind" : "acl_lb_src" , "relationName" : "to_port_one" , "type" : ["host"] ,
+         "content" : [
+             [{"from" : 0, "to" : 499}]
+        ]},
+        {"mboxId" : 7 , "mboxKind" : "acl_lb_dst" , "relationName" : "to_port_one" , "type" : ["host"] ,
+         "content" : [
+             [{"from" : 0, "to" : 499}]
+        ]},
+        {"mboxId" : 8 , "mboxKind" : "acl_lb_dst" , "relationName" : "to_port_one" , "type" : ["host"] ,
+         "content" : [
+             [{"from" : 0, "to" : 499}]
+        ]}
+
+
+    ],
+
+    "availablePackets" : [
+       {"srcFrom" : 0 , "srcTo" : 999 , "dstFrom" : 1000 , "dstTo" : 1001 , "typeFrom" : 0 , "typeTo" : 4 },
+       {"srcFrom" : 1000 , "srcTo" : 1001 , "dstFrom" : 0 , "dstTo" : 9999 , "typeFrom" : 0 , "typeTo" : 4 }
+    ]
+    
+}

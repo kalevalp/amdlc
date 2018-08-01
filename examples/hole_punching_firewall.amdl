@@ -1,0 +1,11 @@
+hole_punching_firewall =
+do
+  port_1 ? src,dst,tpe => // external port
+    src in trusted =>
+      port_0 ! src,dst,tpe
+  []
+  port_0 ? src,dst,tpe => // internal port
+    true =>
+      trusted(dst) := true;
+      port_1 ! src,dst,tpe
+od

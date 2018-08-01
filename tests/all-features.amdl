@@ -1,0 +1,15 @@
+a_middle_box =
+do
+  port_1 ? src, dst, tpe =>
+    true => abort
+  []
+  port_2 ? src, dst, tpe =>
+    if
+      src, dst in r1 => port_1 ! dst,src,tpe
+      []
+      (dst, src in r2 and not dst,dst in r1) => port_1 ! dst,src,tpe
+      []
+      not dst, src in r2 => abort; r1 (dst, src) := true
+    fi
+
+od

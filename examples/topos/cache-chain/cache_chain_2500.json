@@ -1,0 +1,35 @@
+{
+    "typeCount" : 5,
+    
+    "middleboxInstances" : [
+        {"id" : 0, "kind" : "acl_firewall_pair_wl"},
+        {"id" : 1, "kind" : "cache"},
+        {"id" : 2, "kind" : "load_balancer"}
+    ],
+    
+    "initialState" : [
+        {"mboxId" : 0 , "mboxKind" : "acl_firewall_pair_wl" , "relationName" : "" , 
+         "content" : [
+	     [0,20],
+	     [9,20]	     
+        ]}
+    ],
+    
+    "connectedHosts" : [
+       {"mboxId" : 0 , "portId" : 1 , "fromHost" : 0 , "toHost" : 2499},
+       {"mboxId" : 2 , "portId" : 1 , "fromHost" : 2500 , "toHost" : 2500},
+       {"mboxId" : 2 , "portId" : 2 , "fromHost" : 2501 , "toHost" : 2501}
+
+    ],
+
+    "middleboxLinks" : [
+       {"mbox1Id" : 0 , "port1Id" : 0 , "mbox2Id" : 1 , "port2Id" : 1},
+       {"mbox1Id" : 1 , "port1Id" : 0 , "mbox2Id" : 2 , "port2Id" : 0}
+    ],
+
+    "availablePackets" : [
+       {"srcFrom" : 0 , "srcTo" : 2499 , "dstFrom" : 2500 , "dstTo" : 2501 , "typeFrom" : 0 , "typeTo" : 4 },
+       {"srcFrom" : 2500 , "srcTo" : 2501 , "dstFrom" : 0 , "dstTo" : 2499 , "typeFrom" : 0 , "typeTo" : 4 }
+    ]
+    
+}

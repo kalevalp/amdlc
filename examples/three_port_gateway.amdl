@@ -1,0 +1,59 @@
+three_port_gateway = 
+do
+  port_0 ? src,dst,tpe =>
+  if
+    dst in public =>
+      port_0 ! src, dst, tpe
+    []
+    dst in private =>
+      port_1 ! src, dst, tpe
+    []
+    dst in quarantined =>
+      port_2 ! src, dst, tpe
+    []
+    dst in internet =>
+      port_3 ! src, dst, tpe
+  fi
+  []
+  port_1 ? src,dst,tpe =>
+  if
+    dst in public =>
+      port_0 ! src, dst, tpe
+    []
+    dst in private =>
+      port_1 ! src, dst, tpe
+    []
+    dst in quarantined =>
+      port_2 ! src, dst, tpe
+    []
+    dst in internet =>
+      port_3 ! src, dst, tpe
+  fi
+  []
+  port_2 ? src,dst,tpe =>
+  if
+    dst in public =>
+      port_0 ! src, dst, tpe
+    []
+    dst in private =>
+      port_1 ! src, dst, tpe
+    []
+    dst in quarantined =>
+      port_2 ! src, dst, tpe
+    []
+    dst in internet =>
+      port_3 ! src, dst, tpe
+  fi
+  []
+  port_3 ? src,dst,tpe =>
+  if
+    dst in public =>
+      port_0 ! src, dst, tpe
+    []
+    dst in private =>
+      port_1 ! src, dst, tpe
+    []
+    dst in quarantined =>
+      port_2 ! src, dst, tpe
+  fi
+od

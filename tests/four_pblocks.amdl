@@ -1,0 +1,14 @@
+aa =
+do
+  c1 ? src, dst, type =>
+    true => abort
+  []
+  c2 ? src, dst, type =>
+    true => abort
+  []
+  c3 ? src, dst, type =>
+    true => abort
+  []
+  c4 ? src, dst, type =>
+    true => abort
+od

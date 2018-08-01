@@ -1,0 +1,5 @@
+aa =
+do
+  port_0 ? src, dst, tpe =>
+    tdrue => port_1 ! src,dst,tpe
+od

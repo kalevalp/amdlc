@@ -1,0 +1,49 @@
+{
+    "typeCount" : 5,
+    
+    "middleboxInstances" : [
+        {"id" : 0, "kind" : "dropping_ips"},
+        {"id" : 1, "kind" : "hole_punching_firewall"},
+        {"id" : 2, "kind" : "acl_lb_dst"},
+        {"id" : 3, "kind" : "isolation"},
+        {"id" : 4, "kind" : "isolation"}
+    ],
+    
+    "initialState" : [
+        {"mboxId" : 2 , "mboxKind" : "acl_lb_dst" , "relationName" : "",
+         "content" : [
+             [100],
+             [199]
+         ]},
+        {"mboxId" : 3 , "mboxKind" : "isolation" , "relationName" : "" , 
+         "content" : [
+	     [200],
+	     [299]	     
+        ]},
+        {"mboxId" : 4 , "mboxKind" : "isolation" , "relationName" : "" , 
+         "content" : [
+	     [100],
+	     [199]	     
+        ]}
+
+    ],
+    
+    "connectedHosts" : [
+       {"mboxId" : 0 , "portId" : 1 , "fromHost" : 0 , "toHost" : 99},
+       {"mboxId" : 3 , "portId" : 0 , "fromHost" : 100 , "toHost" : 199},
+       {"mboxId" : 4 , "portId" : 0 , "fromHost" : 200 , "toHost" : 299}
+
+    ],
+
+    "middleboxLinks" : [
+       {"mbox1Id" : 0 , "port1Id" : 0 , "mbox2Id" : 1 , "port2Id" : 1 },
+       {"mbox1Id" : 1 , "port1Id" : 0 , "mbox2Id" : 2 , "port2Id" : 0 },
+       {"mbox1Id" : 2 , "port1Id" : 1 , "mbox2Id" : 3 , "port2Id" : 1 },
+       {"mbox1Id" : 2 , "port1Id" : 2 , "mbox2Id" : 4 , "port2Id" : 1 }
+    ],
+
+    "availablePackets" : [
+       {"srcFrom" : 0 , "srcTo" : 299 , "dstFrom" : 0 , "dstTo" : 299 , "typeFrom" : 0 , "typeTo" : 4 }
+    ]
+    
+}

@@ -1,0 +1,14 @@
+cache =
+do
+  port_0 ? src,dst,tpe =>
+    true => 
+      cached(dst,tpe) := true;
+      port_1 ! src,dst,tpe
+  []
+  port_1 ? src,dst,tpe =>
+  if
+    src,tpe in cached => port_1 ! src,dst,tpe
+    []
+    true => port_0 ! src,dst,tpe
+  fi
+od

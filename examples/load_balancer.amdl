@@ -1,0 +1,15 @@
+load_balancer = 
+do
+  port_0 ? src, dst, tpe =>
+  if
+    true => port_1 ! src, dst, tpe
+    []
+    true => port_2 ! src, dst, tpe
+  fi
+  []
+  port_1 ? src, dst, tpe =>
+    true => port_0 ! src, dst, tpe
+  []
+  port_2 ? src, dst, tpe =>
+    true => port_0 ! src, dst, tpe
+od

@@ -1,0 +1,11 @@
+acl_firewall_wl = 
+do
+  port_1 ? src,dst,tpe => // external port
+    true =>
+      port_0 ! src,dst,tpe
+  []
+  port_0 ? src,dst,tpe => // internal port
+    (src in wl and dst in wl) =>
+      port_1 ! src,dst,tpe
+
+od

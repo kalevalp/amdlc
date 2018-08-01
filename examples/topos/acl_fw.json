@@ -1,0 +1,35 @@
+{
+    "typeCount" : 5,
+    
+    "middleboxInstances" : [
+        {"id" : 0, "kind" : "acl_firewall_packet_wl"}
+    ],
+    
+    "initialState" : [
+        {"mboxId" : 0 ,
+	 "mboxKind" : "acl_firewall_packet_wl" ,
+	 "relationName" : "wl" ,
+	 "type" : ["host", "host", "type"] ,
+         "content" : [
+	     [ {"from" : 0, "to" : 9},
+               {"from" : 10, "to" : 19},
+               {"from" : 0, "to" : 4} ],
+	     [ {"from" : 10, "to" : 19},
+               {"from" : 0, "to" : 9},
+               {"from" : 0, "to" : 4} ]
+        ] }
+    ],
+    
+    "connectedHosts" : [
+       {"mboxId" : 0 , "portId" : 0 , "fromHost" : 0 , "toHost" : 9},
+       {"mboxId" : 0 , "portId" : 1 , "fromHost" : 10 , "toHost" : 19}
+    ],
+
+    "middleboxLinks" : [
+    ],
+
+    "availablePackets" : [
+       {"srcFrom" : 0 , "srcTo" : 19 , "dstFrom" : 0 , "dstTo" : 19 , "typeFrom" : 0 , "typeTo" : 4 }
+    ]
+    
+}

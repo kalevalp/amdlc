@@ -1,0 +1,32 @@
+{
+    "typeCount" : 5,
+    
+    "middleboxInstances" : [
+        {"id" : 0, "kind" : "session_firewall"},
+        {"id" : 1, "kind" : "session_firewall"},
+        {"id" : 2, "kind" : "isolation"}
+    ],
+    
+    "initialState" : [
+        {"mboxId" : 2 , "mboxKind" : "isolation" , "relationName" : "forbidden" , "type" : ["host"],
+         "content" : [
+	     [{"from" : 0, "to" : 0}]
+        ]}
+    ],
+    
+    "connectedHosts" : [
+       {"mboxId" : 0 , "portId" : 0 , "fromHost" : 0 , "toHost" : 3999},
+       {"mboxId" : 2 , "portId" : 0 , "fromHost" : 4000 , "toHost" : 7999}
+
+    ],
+
+    "middleboxLinks" : [
+       {"mbox1Id" : 0 , "port1Id" : 1 , "mbox2Id" : 1 , "port2Id" : 1},
+       {"mbox1Id" : 1 , "port1Id" : 0 , "mbox2Id" : 2 , "port2Id" : 1}
+    ],
+
+    "availablePackets" : [
+       {"srcFrom" : 0 , "srcTo" : 7999 , "dstFrom" : 0 , "dstTo" : 7999 , "typeFrom" : 0 , "typeTo" : 4 }
+    ]
+    
+}

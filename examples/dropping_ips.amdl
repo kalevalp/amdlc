@@ -1,0 +1,25 @@
+// A model of an ips that drops incoming packets according to some
+// complex rules.
+// The model nondeterministically forwards or drops incoming packets
+// on the external port.
+//
+// Currently skip (an empty action) is not supported in the compiler.
+// From a fixed-point computation point of view the model with a
+// nondetermintic skip is equivalent to a model which forwards
+// everything.
+
+dropping_ips =
+do
+  port_1 ? src,dst,tpe =>  // external port
+//  if
+    true =>                
+      port_0 ! src,dst,tpe
+//    []
+//    true =>
+//      skip
+//  fi
+  []
+  port_0 ? src,dst,tpe =>  // internal port
+    true =>
+      port_1 ! src,dst,tpe
+od

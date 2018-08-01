@@ -1,0 +1,20 @@
+session_firewall = 
+do
+  port_0 ? src, dst, tpe => // internal port
+  if
+    dst in trusted => port_1 ! src, dst, tpe
+    []
+    tpe = 0 => // request packet
+      port_1 ! src, dst, tpe;
+      requested(dst) := true
+  fi
+  []
+  port_1 ? src, dst, tpe => // external port
+  if
+    src in trusted => port_0 ! src, dst, tpe
+    []
+    ( tpe = 1 and src in requested ) =>
+      // response packet with a request
+      trusted(src) := true
+  fi
+od

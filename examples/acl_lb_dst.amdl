@@ -1,0 +1,15 @@
+acl_lb_dst = 
+do
+  port_0 ? src, dst, tpe =>
+  if
+    dst in to_port_one => port_1 ! src, dst, tpe
+    []
+    not dst in to_port_one => port_2 ! src, dst, tpe
+  fi
+  []
+  port_1 ? src, dst, tpe =>
+    true => port_0 ! src, dst, tpe
+  []
+  port_2 ? src, dst, tpe =>
+    true => port_0 ! src, dst, tpe
+od

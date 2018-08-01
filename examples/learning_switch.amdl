@@ -1,0 +1,65 @@
+learning_switch =
+do
+  port_1 ? src, dst, tpe =>
+  if
+    dst in on_port_1 =>
+      on_port_1(src) := true;
+      port_1 ! src,dst,tpe
+    []    
+    dst in on_port_2 =>
+      on_port_1(src) := true;
+      port_2 ! src,dst,tpe
+    []    
+    dst in on_port_3 =>
+      on_port_1(src) := true;
+      port_3 ! src,dst,tpe
+    []
+    ((not dst in on_port_1 and not dst in on_port_2) and not dst in on_port_3) =>
+      on_port_1(src) := true;
+      port_1 ! src,dst,tpe;
+      port_2 ! src,dst,tpe;
+      port_3 ! src,dst,tpe
+  fi
+  []
+  port_2 ? src, dst, tpe =>
+  if
+    dst in on_port_1 =>
+      on_port_2(src) := true;
+      port_1 ! src,dst,tpe
+    []    
+    dst in on_port_2 =>
+      on_port_2(src) := true;
+      port_2 ! src,dst,tpe
+    []    
+    dst in on_port_3 =>
+      on_port_2(src) := true;
+      port_3 ! src,dst,tpe
+    []
+    ((not dst in on_port_1 and not dst in on_port_2) and not dst in on_port_3) =>
+      on_port_2(src) := true;
+      port_1 ! src,dst,tpe;
+      port_2 ! src,dst,tpe;
+      port_3 ! src,dst,tpe
+  fi
+  []
+  port_3 ? src, dst, tpe =>
+  if
+    dst in on_port_1 =>
+      on_port_3(src) := true;
+      port_1 ! src,dst,tpe
+    []    
+    dst in on_port_2 =>
+      on_port_3(src) := true;
+      port_2 ! src,dst,tpe
+    []    
+    dst in on_port_3 =>
+      on_port_3(src) := true;
+      port_3 ! src,dst,tpe
+    []
+    ((not dst in on_port_1 and not dst in on_port_2) and not dst in on_port_3) =>
+      on_port_3(src) := true;
+      port_1 ! src,dst,tpe;
+      port_2 ! src,dst,tpe;
+      port_3 ! src,dst,tpe
+  fi
+od

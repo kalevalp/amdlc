@@ -1,0 +1,15 @@
+isolation =
+do
+  port_1 ? src,dst,tpe => // external port
+  if
+    src in forbidden =>
+      abort
+    []
+    true =>
+      port_0 ! src,dst,tpe
+  fi
+  []
+  port_0 ? src,dst,tpe => // internal port
+    true =>
+      port_1 ! src,dst,tpe
+od

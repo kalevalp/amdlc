@@ -1,0 +1,49 @@
+{
+    "typeCount" : 5,
+    
+    "middleboxInstances" : [
+        {"id" : 0, "kind" : "three_port_gateway"},
+        {"id" : 1, "kind" : "hole_punching_firewall"},
+        {"id" : 2, "kind" : "isolation"}
+    ],
+
+
+    "initialState" : [
+        {"mboxId" : 0 , "mboxKind" : "three_port_gateway" , "relationName" : "public", "type" : ["host"],
+         "content" : [
+             [{"from" : 0, "to" : 9}]
+         ]},
+        {"mboxId" : 0 , "mboxKind" : "three_port_gateway" , "relationName" : "private" , "type" : ["host"],
+         "content" : [
+	     [{"from" : 10, "to" : 19}]
+        ]},
+        {"mboxId" : 0 , "mboxKind" : "three_port_gateway" , "relationName" : "quarantined" , "type" : ["host"],
+         "content" : [
+	     [{"from" : 20, "to" : 29}]
+         ]},
+        {"mboxId" : 0 , "mboxKind" : "three_port_gateway" , "relationName" : "internet" , "type" : ["host"],
+         "content" : [
+	     [{"from" : 30, "to" : 39}]
+        ]}
+
+    ],
+    
+    
+    "connectedHosts" : [
+       {"mboxId" : 0 , "portId" : 0 , "fromHost" : 0 , "toHost" : 9},
+       {"mboxId" : 0 , "portId" : 3 , "fromHost" : 30 , "toHost" : 39},
+       {"mboxId" : 1 , "portId" : 0 , "fromHost" : 10 , "toHost" : 19},
+       {"mboxId" : 2 , "portId" : 0 , "fromHost" : 20 , "toHost" : 29}
+
+    ],
+
+    "middleboxLinks" : [
+       {"mbox1Id" : 0 , "port1Id" : 1 , "mbox2Id" : 1 , "port2Id" : 1 },
+       {"mbox1Id" : 0 , "port1Id" : 2 , "mbox2Id" : 2 , "port2Id" : 1 }
+    ],
+
+    "availablePackets" : [
+       {"srcFrom" : 0 , "srcTo" : 39 , "dstFrom" : 0 , "dstTo" : 39 , "typeFrom" : 0 , "typeTo" : 4 }
+    ]
+    
+}

@@ -1,0 +1,10 @@
+identity =
+do
+  port_1 ? src,dst,tpe =>  
+    true =>                
+      port_0 ! src,dst,tpe
+  []
+  port_0 ? src,dst,tpe =>  
+    true =>
+      port_1 ! src,dst,tpe
+od
