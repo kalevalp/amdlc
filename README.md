@@ -13,3 +13,6 @@ A compiler for the AMDL stateful network verification language
 * ocamldebug:
   set arguments tests/<testfile>
 
+## Paper
+
+Alpernas, K., Manevich, R., Panda, A., Sagiv, M., Shenker, S., Shoham, S. and Velner, Y., 2018, August. [*Abstract interpretation of stateful networks*](https://www.cs.tau.ac.il/~kalevalp/publications/reverting-sas18-long.pdf). In International Static Analysis Symposium (pp. 86-106). Springer, Cham.
